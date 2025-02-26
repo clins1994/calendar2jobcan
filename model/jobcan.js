@@ -76,6 +76,8 @@ class Jobcan {
       // it doesn't work very well...
       setConfig({observeTime: 1000, navigationTimeout: 1000});
 
+      const notice_text = process.env.NOTICE_TEXT;
+
       for (const [key, value] of Object.entries(events)) {
         process.stdout.write(`Started with ${key}`);
 
@@ -83,14 +85,17 @@ class Jobcan {
 
         if (await (text('Clock In').exists())) {
           console.error(` is already submitted!`);
-        } else if (!await (text('No clocking on shift day.').exists())) {
-          console.error(` is holiday!`);
         } else {
           // Clock-In
-          let ter_time = textBox({id: 'ter_time'});
-          let insert_button = button({id: 'insert_button'});
+          let ter_time = textBox({ id: 'ter_time' });
+          let insert_button = button({ id: 'insert_button' });
           await clear(ter_time);
           await write(value.clockin.replace(':', ''), into(ter_time));
+          if (notice_text) {
+            let notice_text_area = textBox({ name: 'notice' });
+            await clear(notice_text_area);
+            await write(notice_text, into(notice_text_area));
+          }
           await click(insert_button);
           process.stdout.write(` & in`);
           // Clock-Out

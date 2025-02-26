@@ -19,7 +19,7 @@ INPUT=csv
 ...
 ```
 
-And run it like the usage section. 
+And run it like the usage section.
 CSV has only 1 argument, which is the filename (just in case you want to organize backups, etc.)
 
 
@@ -59,6 +59,8 @@ JOBCAN_USERNAME=whatever@moneytree.jp
 JOBCAN_PASSWORD=BliBliBli
 JOBCAN_STRATEGY=sum
 CALENDAR_TIMEZONE=Asia/Tokyo # leave empty to default "Asia/Tokyo"
+# optional for cases when a notice is required
+NOTICE_TEXT="Submitting at the end of the month"
 ```
 
 
