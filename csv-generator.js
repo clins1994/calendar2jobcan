@@ -11,6 +11,11 @@ let clockin = '10:00';
 let clockout = '19:00';
 let breaktime = '01:00';
 
+// parse command line arguments
+const args = process.argv.slice(2);
+if (args.includes('--current')) {
+  month = moment().month() + 1;
+}
 
 // best effort!
 function isHoliday(date) {
@@ -18,12 +23,11 @@ function isHoliday(date) {
     || JapaneseHolidays.isHoliday(date.toDate());
 }
 
-
 async function main() {
   let content = ['date,clockin,clockout,breaktime'];
 
   let iterator = 1;
-  const lastDay = moment([year, month  - 1, 1]).endOf('month').date();
+  const lastDay = moment([year, month - 1, 1]).endOf('month').date();
 
   while (iterator < lastDay) {
     const cursor = moment([year, month - 1, iterator]);
@@ -44,6 +48,5 @@ async function main() {
   console.log(`File ${filename} written.`);
   console.log(`Review extra working or swapped days !!`);
 }
-
 
 main().catch(console.error);

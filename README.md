@@ -6,9 +6,18 @@
 
 If you don't organize yourself using Google Calendar, now there is a new input method.
 
-First, generate a default `monthly.csv` with
+First, generate a default `monthly.csv` with (it will skip all weekends and Japanese holidays)
+
 ```bash
-$ ./csv-generator.js # it will try to skip all JAPANESE holidays (Sat + Sun too)
+$ ./csv-generator.js
+File ./monthly.csv written.
+Review extra working or swapped days !!
+```
+
+If you want to generate the CSV for the current month, use the `--current` flag:
+
+```bash
+$ ./csv-generator.js --current
 File ./monthly.csv written.
 Review extra working or swapped days !!
 ```
@@ -19,7 +28,7 @@ INPUT=csv
 ...
 ```
 
-And run it like the usage section. 
+And run it like the usage section.
 CSV has only 1 argument, which is the filename (just in case you want to organize backups, etc.)
 
 
