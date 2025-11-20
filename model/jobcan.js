@@ -74,7 +74,7 @@ class Jobcan {
       await click(button('ログイン'));
 
       // it doesn't work very well...
-      setConfig({observeTime: 1000, navigationTimeout: 1000});
+      setConfig({ observeTime: 10000, navigationTimeout: 10000 });
 
       const notice_text = process.env.NOTICE_TEXT;
 
